@@ -1,29 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-// Homework 8:
-// We're upgrading our movement system (refer to Functions/MovementSystem.cs)
-// Our movement system should be able to handle a fixed-size array of however many elements you want.
-// You need to create an array of game objects, loop through them via for-loop, then call MoveObject()
-// on each element to move all game objects as we were initially, just automated this time!
 public class Homework8 : MonoBehaviour
 {
-    // TODO -- create an array of game objects
+    public GameObject[] gameObjects; // Array to hold game objects
     float speed = 10.0f;
 
+    // Moves the object in a given direction at the specified speed
     Vector3 MoveObject(Vector3 direction, float speed)
     {
         return direction * speed * Time.deltaTime;
     }
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
-        // TODO -- loop through all game objects and call MoveObject on each element
+        // Loop through the array of game objects
+        for (int i = 0; i < gameObjects.Length; i++)
+        {
+            if (gameObjects[i] != null)
+            {
+                // Call MoveObject on each element
+                gameObjects[i].transform.position += MoveObject(Vector3.right, speed); // Move to the right
+            }
+        }
     }
 }
